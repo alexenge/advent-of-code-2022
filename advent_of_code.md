@@ -3,6 +3,9 @@ Advent of Code 2022
 Alexander Enge
 2022-12-01
 
+- <a href="#day-1-calorie-counting" id="toc-day-1-calorie-counting">Day 1:
+  Calorie Counting</a>
+
 ## Day 1: Calorie Counting
 
 ### Part one

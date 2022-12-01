@@ -2,7 +2,10 @@
 title: Advent of Code 2022
 author: Alexander Enge
 date: 2022-12-01
-format: gfm
+format:
+  gfm:
+    toc: true
+    toc-depth: 2
 ---
 
 ## Day 1: Calorie Counting
