@@ -3,10 +3,28 @@ Advent of Code 2022
 Alexander Enge
 2022-12-01
 
+- <a href="#hi" id="toc-hi">Hi! 👋</a>
 - <a href="#day-1-calorie-counting" id="toc-day-1-calorie-counting">Day 1:
-  Calorie Counting</a>
+  Calorie Counting 🍕</a>
 
-## Day 1: Calorie Counting
+## Hi! 👋
+
+This repository contains my solutions for the [2022
+edition](https://adventofcode.com/2022) of [Advent of
+Code](https://adventofcode.com). From the Advent of Code website:
+
+> **Advent of Code** is an [Advent
+> calendar](https://en.wikipedia.org/wiki/Advent_calendar) of small
+> programming puzzles for a variety of skill sets and skill levels that
+> can be solved in any programming language you like. People use them as
+> interview prep, company training, university coursework, practice
+> problems, a speed contest, or to challenge each other.
+
+I’ll be using a mix of [Python](https://www.python.org), [Base
+R](https://www.r-project.org), and [tidyverse-style
+R](https://www.tidyverse.org).
+
+## Day 1: Calorie Counting 🍕
 
 ### Part one
 
