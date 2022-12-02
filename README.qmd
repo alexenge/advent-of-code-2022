@@ -8,9 +8,7 @@ format:
     toc-depth: 2
 ---
 
-##  Hi! 👋
-
-This repository contains my solutions for the [2022 edition](https://adventofcode.com/2022) of [Advent of Code](https://adventofcode.com).
+Hi! 👋 This repository contains my solutions for the [2022 edition](https://adventofcode.com/2022) of [Advent of Code](https://adventofcode.com).
 From the Advent of Code website:
 
 > **Advent of Code** is an [Advent calendar](https://en.wikipedia.org/wiki/Advent_calendar) of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
@@ -20,9 +18,7 @@ I'll be using a mix of [Python](https://www.python.org), [Base R](https://www.r-
 
 ## Day 1: Calorie Counting 🍕
 
-### Part one
-
-#### Python
+### Part one: Python
 
 ```{python}
 max_elf = 0
@@ -42,7 +38,7 @@ with open('data/day1.txt') as f:
 print(max_elf)
 ```
 
-#### Base R
+### Part one: Base R
 
 ```{r}
 lines <- readLines("data/day1.txt", warn = FALSE)
@@ -56,9 +52,7 @@ split(lines, elf_indices) |>
     max()
 ```
 
-### Part two
-
-#### Python
+### Part two: Python
 
 ```{python}
 max_elves = [0, 0, 0]
@@ -79,7 +73,7 @@ with open('data/day1.txt') as f:
 print(sum(max_elves))
 ```
 
-#### Base R
+### Part two: Base R
 
 ```{r}
 lines <- readLines("data/day1.txt", warn = FALSE)
