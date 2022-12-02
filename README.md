@@ -3,12 +3,14 @@ Advent of Code 2022
 Alexander Enge
 2022-12-01
 
-- <a href="#day-1-calorie-counting" id="toc-day-1-calorie-counting">Day 1:
-  Calorie Counting 🍕</a>
-- <a href="#day-2-rock-paper-scissors"
-  id="toc-day-2-rock-paper-scissors">Day 2: Rock Paper Scissors ✂️</a>
+- <a href="#day-1-calorie-counting-pizza"
+  id="toc-day-1-calorie-counting-pizza">Day 1: Calorie Counting
+  :pizza:</a>
+- <a href="#day-2-rock-paper-scissors-scissors"
+  id="toc-day-2-rock-paper-scissors-scissors">Day 2: Rock Paper Scissors
+  :scissors:</a>
 
-Hi! 👋
+Hi! :wave:
 
 This repository contains my solutions for the [2022
 edition](https://adventofcode.com/2022) of [Advent of
@@ -27,7 +29,7 @@ I’ll be using a mix of [Python](https://www.python.org), [Base
 R](https://www.r-project.org), and [tidyverse-style
 R](https://www.tidyverse.org).
 
-## Day 1: Calorie Counting 🍕
+## Day 1: Calorie Counting :pizza:
 
 ### Part one: Python
 
@@ -108,7 +110,7 @@ split(lines, elf_indices) |>
 
     [1] 193697
 
-## Day 2: Rock Paper Scissors ✂️
+## Day 2: Rock Paper Scissors :scissors:
 
 ### Part one: Tidyverse R
 

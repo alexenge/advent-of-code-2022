@@ -8,7 +8,7 @@ format:
     toc-depth: 2
 ---
 
-Hi! 👋
+Hi! :wave:
 
 This repository contains my solutions for the [2022 edition](https://adventofcode.com/2022) of [Advent of Code](https://adventofcode.com).
 
@@ -19,7 +19,7 @@ From the Advent of Code website:
 
 I'll be using a mix of [Python](https://www.python.org), [Base R](https://www.r-project.org), and [tidyverse-style R](https://www.tidyverse.org).
 
-## Day 1: Calorie Counting 🍕
+## Day 1: Calorie Counting :pizza:
 
 ### Part one: Python
 
@@ -92,7 +92,7 @@ split(lines, elf_indices) |>
     sum()
 ```
 
-## Day 2: Rock Paper Scissors ✂️
+## Day 2: Rock Paper Scissors :scissors:
 
 ### Part one: Tidyverse R
 
