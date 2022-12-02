@@ -8,9 +8,13 @@ Alexander Enge
 - <a href="#day-2-rock-paper-scissors"
   id="toc-day-2-rock-paper-scissors">Day 2: Rock Paper Scissors ✂️</a>
 
-Hi! 👋 This repository contains my solutions for the [2022
+Hi! 👋
+
+This repository contains my solutions for the [2022
 edition](https://adventofcode.com/2022) of [Advent of
-Code](https://adventofcode.com). From the Advent of Code website:
+Code](https://adventofcode.com).
+
+From the Advent of Code website:
 
 > **Advent of Code** is an [Advent
 > calendar](https://en.wikipedia.org/wiki/Advent_calendar) of small
@@ -106,22 +110,11 @@ split(lines, elf_indices) |>
 
 ## Day 2: Rock Paper Scissors ✂️
 
-### Part one: Tidyverse Rttin
+### Part one: Tidyverse R
 
 ``` r
 library(tidyverse)
-```
 
-    ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-    ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
-    ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-    ✔ tidyr   1.2.0      ✔ stringr 1.4.1 
-    ✔ readr   2.1.3      ✔ forcats 0.5.2 
-    ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ✖ dplyr::filter() masks stats::filter()
-    ✖ dplyr::lag()    masks stats::lag()
-
-``` r
 read_table("data/day2.txt", col_names = c("other", "me")) %>%
     unite(col = "round", other, me, remove = FALSE) %>%
     mutate(
@@ -136,13 +129,6 @@ read_table("data/day2.txt", col_names = c("other", "me")) %>%
     pull(score) %>%
     sum()
 ```
-
-
-    ── Column specification ────────────────────────────────────────────────────────
-    cols(
-      other = col_character(),
-      me = col_character()
-    )
 
     [1] 14297
 
@@ -164,12 +150,5 @@ read_table("data/day2.txt", col_names = c("other", "outcome")) %>%
     pull(score) %>%
     sum()
 ```
-
-
-    ── Column specification ────────────────────────────────────────────────────────
-    cols(
-      other = col_character(),
-      outcome = col_character()
-    )
 
     [1] 10498
