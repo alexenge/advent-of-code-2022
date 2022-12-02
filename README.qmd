@@ -8,7 +8,10 @@ format:
     toc-depth: 2
 ---
 
-Hi! 👋 This repository contains my solutions for the [2022 edition](https://adventofcode.com/2022) of [Advent of Code](https://adventofcode.com).
+Hi! 👋
+
+This repository contains my solutions for the [2022 edition](https://adventofcode.com/2022) of [Advent of Code](https://adventofcode.com).
+
 From the Advent of Code website:
 
 > **Advent of Code** is an [Advent calendar](https://en.wikipedia.org/wiki/Advent_calendar) of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
@@ -91,9 +94,9 @@ split(lines, elf_indices) |>
 
 ## Day 2: Rock Paper Scissors ✂️
 
-### Part one: Tidyverse Rttin
+### Part one: Tidyverse R
 
-```{r}
+```{r, message = FALSE}
 library(tidyverse)
 
 read_table("data/day2.txt", col_names = c("other", "me")) %>%
@@ -113,7 +116,7 @@ read_table("data/day2.txt", col_names = c("other", "me")) %>%
 
 ### Part two: Tidyverse R
 
-```{r}
+```{r, message = FALSE}
 read_table("data/day2.txt", col_names = c("other", "outcome")) %>%
     unite(col = "round", other, outcome, remove = FALSE) %>%
     mutate(
