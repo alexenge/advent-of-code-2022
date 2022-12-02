@@ -88,3 +88,44 @@ split(lines, elf_indices) |>
     tail(3) |>
     sum()
 ```
+
+## Day 2: Rock Paper Scissors ✂️
+
+### Part one: Tidyverse Rttin
+
+```{r}
+library(tidyverse)
+
+read_table("data/day2.txt", col_names = c("other", "me")) %>%
+    unite(col = "round", other, me, remove = FALSE) %>%
+    mutate(
+        game_score = case_when(
+            round %in% c("A_Y", "B_Z", "C_X") ~ 6,
+            round %in% c("A_X", "B_Y", "C_Z") ~ 3,
+            round %in% c("A_Z", "B_X", "C_Y") ~ 0
+        ),
+        play_score = recode(me, "X" = 1, "Y" = 2, "Z" = 3),
+        score = game_score + play_score
+    ) %>%
+    pull(score) %>%
+    sum()
+```
+
+### Part two: Tidyverse R
+
+```{r}
+read_table("data/day2.txt", col_names = c("other", "outcome")) %>%
+    unite(col = "round", other, outcome, remove = FALSE) %>%
+    mutate(
+        me = case_when(
+            round %in% c("A_X", "B_Z", "C_Y") ~ "Z",
+            round %in% c("A_Y", "B_X", "C_Z") ~ "X",
+            round %in% c("A_Z", "B_Y", "C_X") ~ "Y"
+        ),
+        game_score = recode(outcome, "X" = 0, "Y" = 3, "Z" = 6),
+        play_score = recode(me, "X" = 1, "Y" = 2, "Z" = 3),
+        score = game_score + play_score
+    ) %>%
+    pull(score) %>%
+    sum()
+```
