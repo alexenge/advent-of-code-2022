@@ -9,6 +9,9 @@ Alexander Enge
 - <a href="#day-2-rock-paper-scissors-scissors"
   id="toc-day-2-rock-paper-scissors-scissors">Day 2: Rock Paper Scissors
   :scissors:</a>
+- <a href="#day-3-rucksack-reorganization-school_satchel"
+  id="toc-day-3-rucksack-reorganization-school_satchel">Day 3: Rucksack
+  Reorganization :school_satchel:</a>
 
 Hi! :wave:
 
@@ -154,3 +157,36 @@ read_table("data/day2.txt", col_names = c("other", "outcome")) %>%
 ```
 
     [1] 10498
+
+## Day 3: Rucksack Reorganization :school_satchel:
+
+### Part one: Python
+
+``` python
+from string import ascii_lowercase, ascii_uppercase
+
+with open('data/day3.txt') as f:
+    lines = [line.strip() for line in f.readlines()]
+
+halves = [(line[:len(line) // 2], line[len(line) // 2:]) for line in lines]
+items = [set(half_1).intersection(half_2).pop() for half_1, half_2 in halves]
+
+letters = ascii_lowercase + ascii_uppercase
+priorities = [letters.index(item) + 1 for item in items]
+print(sum(priorities))
+```
+
+    7795
+
+### Part two: Python
+
+``` python
+group_size = 3
+groups = [lines[ix:ix + group_size] for ix in range(0, len(lines), group_size)]
+
+badges = [set.intersection(*map(set, group)).pop() for group in groups]
+priorities = [letters.index(badge) + 1 for badge in badges]
+print(sum(priorities))
+```
+
+    2703
