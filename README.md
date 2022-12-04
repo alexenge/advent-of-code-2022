@@ -12,6 +12,8 @@ Alexander Enge
 - <a href="#day-3-rucksack-reorganization-school_satchel"
   id="toc-day-3-rucksack-reorganization-school_satchel">Day 3: Rucksack
   Reorganization :school_satchel:</a>
+- <a href="#day-4-camp-cleanup-broom"
+  id="toc-day-4-camp-cleanup-broom">Day 4: Camp Cleanup :broom:</a>
 
 Hi! :wave:
 
@@ -190,3 +192,75 @@ print(sum(priorities))
 ```
 
     2703
+
+## Day 4: Camp Cleanup :broom:
+
+### Part one: Python
+
+``` python
+def is_contained(min_1, max_1, min_2, max_2):
+    return (min_1 >= min_2 and max_1 <= max_2 or
+            min_2 >= min_1 and max_2 <= max_1)
+
+
+contained = 0
+with open('data/day4.txt') as f:
+    for line in f:
+        elf_1, elf_2 = line.strip().split(',')
+        min_1, max_1 = [int(section) for section in elf_1.split('-')]
+        min_2, max_2 = [int(section) for section in elf_2.split('-')]
+        contained += is_contained(min_1, max_1, min_2, max_2)
+
+print(contained)
+```
+
+    475
+
+### Part one: Tidyverse R
+
+``` r
+read_csv("data/day4.txt", col_names = c("elf_1", "elf_2")) %>%
+    transmute(across(.fns = str_split, pattern = "-")) %>%
+    unnest_wider(c(elf_1, elf_2), names_sep = "_", transform = as.integer) %>%
+    mutate(
+        contained_1 = elf_1_1 >= elf_2_1 & elf_1_2 <= elf_2_2,
+        contained_2 = elf_2_1 >= elf_1_1 & elf_2_2 <= elf_1_2,
+        contained = contained_1 | contained_2
+    ) %>%
+    pull(contained) %>%
+    sum()
+```
+
+    [1] 475
+
+### Part two: Python
+
+``` python
+def is_overlap(min_1, max_1, min_2, max_2):
+    return (max_1 >= min_2 and max_2 >= min_1)
+
+overlaps = 0
+with open('data/day4.txt') as f:
+    for line in f:
+        elf_1, elf_2 = line.strip().split(',')
+        min_1, max_1 = [int(section) for section in elf_1.split('-')]
+        min_2, max_2 = [int(section) for section in elf_2.split('-')]
+        overlaps += is_overlap(min_1, max_1, min_2, max_2)
+
+print(overlaps)
+```
+
+    825
+
+### Part two: Tidyverse R
+
+``` r
+read_csv("data/day4.txt", col_names = c("elf_1", "elf_2")) %>%
+    transmute(across(.fns = str_split, pattern = "-")) %>%
+    unnest_wider(c(elf_1, elf_2), names_sep = "_", transform = as.integer) %>%
+    mutate(overlap = elf_1_2 >= elf_2_1 & elf_2_2 >= elf_1_1) %>%
+    pull(overlap) %>%
+    sum()
+```
+
+    [1] 825
