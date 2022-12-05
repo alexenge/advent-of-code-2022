@@ -14,6 +14,8 @@ Alexander Enge
   Reorganization :school_satchel:</a>
 - <a href="#day-4-camp-cleanup-broom"
   id="toc-day-4-camp-cleanup-broom">Day 4: Camp Cleanup :broom:</a>
+- <a href="#day-5-supply-stacks-package"
+  id="toc-day-5-supply-stacks-package">Day 5: Supply Stacks :package:</a>
 
 Hi! :wave:
 
@@ -264,3 +266,58 @@ read_csv("data/day4.txt", col_names = c("elf_1", "elf_2")) %>%
 ```
 
     [1] 825
+
+## Day 5: Supply Stacks :package:
+
+### Part one: Base R
+
+``` r
+transpose_list <- function(l) as.list(as.data.frame(t(as.data.frame(l))))
+drop_empty <- function(x) x[x != " "]
+
+input <- read.csv("data/day5.txt", header = FALSE)
+
+input_1 <- subset(input, grepl("\\[", V1))$V1
+stack_ixs <- seq(2, max(nchar(input_1)), by = 4)
+stacks <- lapply(input_1, substring, first = stack_ixs, last = stack_ixs) |>
+    rev() |>
+    transpose_list() |>
+    lapply(drop_empty)
+
+input_2 <- subset(input, grepl("move", V1))$V1
+moves <- strsplit(input_2, split = " ")
+for (move in moves) {
+    from = as.integer(move[4])
+    to = as.integer(move[6])
+    n = as.integer(move[2])
+    stacks[[to]] <- c(stacks[[to]], rev(tail(stacks[[from]], n)))
+    stacks[[from]] <- head(stacks[[from]], -n)
+}
+
+lapply(stacks, tail, n = 1) |>
+    paste(collapse = "")
+```
+
+    [1] "QNNTGTPFN"
+
+### Part two: Base R
+
+``` r
+stacks <- lapply(input_1, substring, first = stack_ixs, last = stack_ixs) |>
+    rev() |>
+    transpose_list() |>
+    lapply(drop_empty) # Same as before
+
+for (move in moves) {
+    from = as.integer(move[4])
+    to = as.integer(move[6])
+    n = as.integer(move[2])
+    stacks[[to]] <- c(stacks[[to]], tail(stacks[[from]], n)) # Don't reverse
+    stacks[[from]] <- head(stacks[[from]], -n)
+}
+
+lapply(stacks, tail, n = 1) |>
+    paste(collapse = "")
+```
+
+    [1] "GGNPJBTTR"
