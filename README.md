@@ -14,8 +14,9 @@ Alexander Enge
   Reorganization :school_satchel:</a>
 - <a href="#day-4-camp-cleanup-broom"
   id="toc-day-4-camp-cleanup-broom">Day 4: Camp Cleanup :broom:</a>
-- <a href="#day-5-supply-stacks-package"
-  id="toc-day-5-supply-stacks-package">Day 5: Supply Stacks :package:</a>
+- <a href="#day-5-supply-stacks-building_construction"
+  id="toc-day-5-supply-stacks-building_construction">Day 5: Supply Stacks
+  :building_construction:</a>
 
 Hi! :wave:
 
@@ -267,7 +268,7 @@ read_csv("data/day4.txt", col_names = c("elf_1", "elf_2")) %>%
 
     [1] 825
 
-## Day 5: Supply Stacks :package:
+## Day 5: Supply Stacks :building_construction:
 
 ### Part one: Base R
 

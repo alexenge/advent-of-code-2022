@@ -226,7 +226,7 @@ read_csv("data/day4.txt", col_names = c("elf_1", "elf_2")) %>%
     sum()
 ```
 
-## Day 5: Supply Stacks :package:
+## Day 5: Supply Stacks :building_construction:
 
 ### Part one: Base R
 
