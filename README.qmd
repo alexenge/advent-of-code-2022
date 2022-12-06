@@ -286,12 +286,11 @@ def find_marker(input, n_letters):
     for ix in range(len(input)):
         letters = input[ix:ix + n_letters]
         if len(letters) == len(set(letters)):
-            print(ix + n_letters) # Print index of *last* marker letter
-            break
+            return ix + n_letters
 
 
 with open('data/day6.txt') as f:
-    input = f.readlines()[0]
+    input = f.readline()
 
 find_marker(input, n_letters=4)
 ```
