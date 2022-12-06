@@ -17,6 +17,8 @@ Alexander Enge
 - <a href="#day-5-supply-stacks-building_construction"
   id="toc-day-5-supply-stacks-building_construction">Day 5: Supply Stacks
   :building_construction:</a>
+- <a href="#day-6-tuning-trouble-radio"
+  id="toc-day-6-tuning-trouble-radio">Day 6: Tuning Trouble :radio:</a>
 
 Hi! :wave:
 
@@ -322,3 +324,32 @@ lapply(stacks, tail, n = 1) |>
 ```
 
     [1] "GGNPJBTTR"
+
+## Day 6: Tuning Trouble :radio:
+
+### Part one: Python
+
+``` python
+def find_marker(input, n_letters):
+    for ix in range(len(input)):
+        letters = input[ix:ix + n_letters]
+        if len(letters) == len(set(letters)):
+            print(ix + n_letters) # Print index of *last* marker letter
+            break
+
+
+with open('data/day6.txt') as f:
+    input = f.readlines()[0]
+
+find_marker(input, n_letters=4)
+```
+
+    1802
+
+### Part two: Python
+
+``` python
+find_marker(input, n_letters=14)
+```
+
+    3551
