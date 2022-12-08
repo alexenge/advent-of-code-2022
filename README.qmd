@@ -300,3 +300,45 @@ find_marker(input, n_letters=4)
 ```{python}
 find_marker(input, n_letters=14)
 ```
+
+## Day 7: No Space Left On Device :file_folder:
+
+### Part one: Base R
+
+```{r}
+input <- readLines("data/day7.txt", warn = FALSE)
+dirs = list(`/` = list(".dir_size" = 0))
+for (cmd in input) {
+
+    if (cmd == "$ cd /") path <- '/' 
+    else if (cmd == "$ cd ..") path <- head(path, -1)
+    else if (startsWith(cmd, "$ cd")) {
+        dir_name <- tail(strsplit(cmd, " ")[[1]], 1)
+        path <- c(path, dir_name)
+    }
+
+    else if (cmd == "$ ls") dirs[[path]] <- list(".dir_size" = 0)
+    else if (!startsWith(cmd, "dir")) { # Only consider files, not directories
+        file_size <- strsplit(cmd, " ")[[1]] |> head(1) |> as.numeric()
+        for (ix in seq_along(path)) { # Add file size to all parent directories
+            dir_size_path <- c(head(path, ix), ".dir_size")
+            dirs[[dir_size_path]] <- dirs[[dir_size_path]] + file_size
+        }
+    }
+    else next
+
+}
+
+str(dirs, list.len = 3) # Sanity check
+
+dir_sizes <- unlist(dirs)
+sum(dir_sizes[dir_sizes < 1e5])
+```
+
+### Part two: Base R
+
+```{r}
+space_left <- 7e7 - dirs[[c("/", ".dir_size")]]
+space_needed <- 3e7 - space_left
+min(dir_sizes[dir_sizes > space_needed])
+```

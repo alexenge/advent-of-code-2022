@@ -19,6 +19,9 @@ Alexander Enge
   :building_construction:</a>
 - <a href="#day-6-tuning-trouble-radio"
   id="toc-day-6-tuning-trouble-radio">Day 6: Tuning Trouble :radio:</a>
+- <a href="#day-7-no-space-left-on-device-file_folder"
+  id="toc-day-7-no-space-left-on-device-file_folder">Day 7: No Space Left
+  On Device :file_folder:</a>
 
 Hi! :wave:
 
@@ -352,3 +355,62 @@ find_marker(input, n_letters=14)
 ```
 
     3551
+
+## Day 7: No Space Left On Device :file_folder:
+
+### Part one: Base R
+
+``` r
+input <- readLines("data/day7.txt", warn = FALSE)
+dirs = list(`/` = list(".dir_size" = 0))
+for (cmd in input) {
+
+    if (cmd == "$ cd /") path <- '/' 
+    else if (cmd == "$ cd ..") path <- head(path, -1)
+    else if (startsWith(cmd, "$ cd")) {
+        dir_name <- tail(strsplit(cmd, " ")[[1]], 1)
+        path <- c(path, dir_name)
+    }
+
+    else if (cmd == "$ ls") dirs[[path]] <- list(".dir_size" = 0)
+    else if (!startsWith(cmd, "dir")) { # Only consider files, not directories
+        file_size <- strsplit(cmd, " ")[[1]] |> head(1) |> as.numeric()
+        for (ix in seq_along(path)) { # Add file size to all parent directories
+            dir_size_path <- c(head(path, ix), ".dir_size")
+            dirs[[dir_size_path]] <- dirs[[dir_size_path]] + file_size
+        }
+    }
+    else next
+
+}
+
+str(dirs, list.len = 3) # Sanity check
+```
+
+    List of 1
+     $ /:List of 5
+      ..$ .dir_size: num 44376732
+      ..$ lhrfs    :List of 1
+      .. ..$ .dir_size: num 240152
+      ..$ nwh      :List of 2
+      .. ..$ .dir_size: num 834387
+      .. ..$ pmdj     :List of 1
+      .. .. ..$ .dir_size: num 514336
+      .. [list output truncated]
+
+``` r
+dir_sizes <- unlist(dirs)
+sum(dir_sizes[dir_sizes < 1e5])
+```
+
+    [1] 1243729
+
+### Part two: Base R
+
+``` r
+space_left <- 7e7 - dirs[[c("/", ".dir_size")]]
+space_needed <- 3e7 - space_left
+min(dir_sizes[dir_sizes > space_needed])
+```
+
+    [1] 4443914
