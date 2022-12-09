@@ -342,3 +342,54 @@ space_left <- 7e7 - dirs[[c("/", ".dir_size")]]
 space_needed <- 3e7 - space_left
 min(dir_sizes[dir_sizes > space_needed])
 ```
+
+## Day 8: Treetop Tree House :deciduous_tree:
+
+### Part one: Python
+
+```{python}
+import numpy as np
+
+
+def is_visible(arr_1d):
+    """Tests for each element in arr if it's visible from the front or back."""
+    return [all(arr_1d[:ix] < elem) or all(arr_1d[ix + 1:] < elem)
+            for ix, elem in enumerate(arr_1d)]
+
+
+input = np.genfromtxt('data/day8.txt', delimiter=1)
+vis = [np.apply_along_axis(is_visible, ax, input) for ax in range(input.ndim)]
+np.any(vis, axis=0).sum()
+```
+
+### Part two: Python
+
+```{python}
+def score_elem(arr, elem):
+    """Computes the score (other visible trees) in one direction."""
+    if arr.size == 0:
+        score = 0 # Edge tree
+    elif all(elem > arr):
+        score = len(arr) # Largest tree, sees all other trees in the row
+    else:
+        score = np.where(arr >= elem)[0][0] + 1 # Sees until next equal tree
+    return score
+
+
+input = np.genfromtxt('data/day8.txt', dtype=int, delimiter=1)
+
+scores = np.zeros((4,) + input.shape, dtype=int)
+for row_ix, row in enumerate(input):
+    for col_ix, elem in enumerate(row):
+
+        left = np.flip(row[:col_ix])
+        right = row[col_ix + 1:]
+        up = np.flip(input[:row_ix, col_ix])
+        down = input[row_ix + 1:, col_ix]
+
+        for dir_ix, arr in enumerate([left, right, up, down]):
+            scores[dir_ix, row_ix, col_ix] = score_elem(arr, elem)
+
+scores = np.prod(scores, axis=0)
+print(scores.max())
+```
