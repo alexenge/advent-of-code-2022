@@ -472,3 +472,6 @@ print(scores.max())
 ```
 
     527340
+
+That’s how far I’ve got for the 2022 edition of Advent of Code.
+:facepalm: Wish me better luck next time!
